@@ -35,36 +35,31 @@ var localApi = function(dest, callback) {
     xhr.send();
 };
 
-// ################
-// function main()
-// ################
-
-// TODO: use Closure to reduce global variable
-var queryInterval;
-var queryCounter = 0;
-var maxQueryTime = 1123450;
-var currentIndex = 0;
-var query = function() {
-    localApi('job', function(data) {
-            var json = JSON.parse(data);
-            if (currentIndex < json.index || true) { // debug
-                currentIndex = json.index;
-                showNotification(json.content.title, json.content.body, json.content.target_url);
-            }
-            queryCounter++;
-            if (queryCounter > maxQueryTime) {
-                console.log('query interval is ended');
-                clearInterval(queryInterval);
-            }
-    });
-};
-queryCicle=20 * 60 * 1000; // twenty minus once
-queryInterval=setInterval(query, queryCicle);
-console.log('query interval is started');
-query()
-
-
-
 // ###########################
 // #  new logic start at here
 // ###########################
+
+var jobParser = function(json) {
+    what = json.what;
+    console.debug("jobParser: " + what);
+    switch(what) {
+    case "nothing":
+	break;
+    case "notification":
+	title = json.content.title;
+	body = json.content.body;
+	target_url = json.content.target_url;
+	showNotification(title, body, target_url);
+	break;
+    }
+};
+
+var imQuery = function() {
+    localApi('im', function(data) {
+	    var json = JSON.parse(data);
+	    jobParser(json);
+	});
+};
+ten_seconds = 10 * 1000;
+setInterval(imQuery, ten_seconds);
+imQuery();

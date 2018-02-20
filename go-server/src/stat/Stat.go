@@ -5,6 +5,8 @@ import (
        "time"
        "math/rand"
        "log"
+
+       "im"
 )
 
 var hungry = 80
@@ -18,6 +20,11 @@ func init() {
      	for {
 	      if hungry > 0 {
 	     	 hungry--
+		 notification := im.NotificationIMJob(
+		 	      "Hungry",
+			      "Yes, I am hungry",
+			      "https://www.zhihu.com")
+		 im.ScheduleJob(notification)
 	      }
 
 	      time.Sleep(time.Duration(hungryRate) * time.Second)

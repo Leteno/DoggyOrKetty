@@ -6,6 +6,7 @@ import (
        "log"
 
        "stat"
+       "im"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -36,6 +37,12 @@ func Job(w http.ResponseWriter, r *http.Request) {
      JSON = fmt.Sprintf(JSON, index, title, body, target_url)
 
      fmt.Fprintf(w, JSON)
+}
+
+func IM(w http.ResponseWriter, r *http.Request) {
+     log.Printf("Requesting /im")
+
+     fmt.Fprintf(w, im.GetJob())
 }
 
 func Stat(w http.ResponseWriter, r *http.Request) {
