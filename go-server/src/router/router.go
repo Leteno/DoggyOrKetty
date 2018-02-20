@@ -4,6 +4,8 @@ import (
        "net/http"
        "fmt"
        "log"
+
+       "stat"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -38,12 +40,5 @@ func Job(w http.ResponseWriter, r *http.Request) {
 
 func Stat(w http.ResponseWriter, r *http.Request) {
      log.Printf("Requesting /stat")
-
-     var JSON = `{
-     	 "hungry": %d,
-	 "thirsty": %d,
-	 "mood": %d
-     }`
-     JSON = fmt.Sprintf(JSON, 90, 80, 70)
-     fmt.Fprintf(w, JSON)
+     fmt.Fprintf(w, stat.GetCurrentStat())
 }
