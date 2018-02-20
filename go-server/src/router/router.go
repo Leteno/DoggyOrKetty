@@ -35,3 +35,15 @@ func Job(w http.ResponseWriter, r *http.Request) {
 
      fmt.Fprintf(w, JSON)
 }
+
+func Stat(w http.ResponseWriter, r *http.Request) {
+     log.Printf("Requesting /stat")
+
+     var JSON = `{
+     	 "hungry": %d,
+	 "thirsty": %d,
+	 "mood": %d
+     }`
+     JSON = fmt.Sprintf(JSON, 90, 80, 70)
+     fmt.Fprintf(w, JSON)
+}

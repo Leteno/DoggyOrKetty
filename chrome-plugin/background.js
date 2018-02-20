@@ -62,3 +62,9 @@ queryCicle=20 * 60 * 1000; // twenty minus once
 queryInterval=setInterval(query, queryCicle);
 console.log('query interval is started');
 query()
+
+
+
+// ###########################
+// #  new logic start at here
+// ###########################
