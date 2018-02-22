@@ -102,5 +102,6 @@ func waitForInit() {
 }
 
 func onPrefClose() {
+     log.Printf("pref save on close")
      saveToFile()
 }
