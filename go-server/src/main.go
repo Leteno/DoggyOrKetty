@@ -13,6 +13,7 @@ func main() {
      http.HandleFunc("/job", router.Job)
      http.HandleFunc("/stat", router.Stat)
      http.HandleFunc("/im", router.IM)
+     http.HandleFunc("/feed", router.Feed)
 
      Port := ":8000"
      log.Printf("Listening on %s\n", Port)

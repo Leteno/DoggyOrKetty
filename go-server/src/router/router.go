@@ -4,6 +4,7 @@ import (
        "net/http"
        "fmt"
        "log"
+       "strconv"
 
        "stat"
        "im"
@@ -48,4 +49,24 @@ func IM(w http.ResponseWriter, r *http.Request) {
 func Stat(w http.ResponseWriter, r *http.Request) {
      log.Printf("Requesting /stat")
      fmt.Fprintf(w, stat.GetCurrentStat())
+}
+
+func Feed(w http.ResponseWriter, r *http.Request) {
+     log.Printf("Requesting /feed")
+     _map := r.URL.Query()
+
+     hungry, err := strconv.Atoi(_map.Get("hungry"))
+     if err != nil {
+     	hungry = 0
+     }
+     thirsty, err := strconv.Atoi(_map.Get("thirsty"))
+     if err != nil {
+     	thirsty = 0
+     }
+     mood, err := strconv.Atoi(_map.Get("mood"))
+     if err != nil {
+     	mood = 0
+     }
+
+     fmt.Fprintf(w, stat.Feed(hungry, thirsty, mood))
 }

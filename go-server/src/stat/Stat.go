@@ -65,3 +65,24 @@ func GetCurrentStat() string {
      JSON = fmt.Sprintf(JSON, hungry, thirsty, mood)
      return JSON
 }
+
+func Feed(_hungry int, _thirsty int, _mood int) string {
+     log.Printf("feed hungry:%d, thirsty:%d, mood:%d", _hungry, _thirsty, _mood)
+     hungry += _hungry
+     if hungry > 100 {
+     	hungry = 100
+     }
+     thirsty += _thirsty
+     if thirsty > 100 {
+     	thirsty = 100
+     }
+     mood += _mood
+     if mood > 100 {
+     	mood = 100
+     }
+     return `
+{
+	"status": "success"
+}
+`
+}

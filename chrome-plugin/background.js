@@ -6,6 +6,7 @@ Notification.requestPermission();
 chrome.notifications.onClicked.addListener(function(notificationId) {
         chrome.tabs.create({url: notificationId});
         chrome.notifications.clear(notificationId);
+	localApi('feed?hungry=20');
     });
 var showNotification = function(title, message, url) {
     console.log('show notification message: ' + message + ', url: ' + url);
