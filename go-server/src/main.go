@@ -26,6 +26,7 @@ func signalDeal() {
 
 func main() {
      signalDeal()
+     router.Init()
      http.HandleFunc("/", router.Index)
      http.HandleFunc("/job", router.Job)
      http.HandleFunc("/stat", router.Stat)

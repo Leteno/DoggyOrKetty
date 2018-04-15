@@ -10,6 +10,10 @@ import (
        "im"
 )
 
+func Init() {
+     im.Init()
+}
+
 func Index(w http.ResponseWriter, r *http.Request) {
 
      log.Printf("Get Index request\n")
