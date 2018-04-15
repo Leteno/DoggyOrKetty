@@ -18,16 +18,18 @@ func init() {
      hungryRate := rand.Int31n(20) * 60 + 60 * 3
      go func() {
      	for {
-	      if hungry > 0 {
-	     	 hungry--
-		 notification := im.NotificationIMJob(
-		 	      "Hungry",
-			      "Yes, I am hungry",
-			      "https://www.zhihu.com")
-		 im.ScheduleJob(notification)
-	      }
+	    if hungry > 0 {
+	       hungry--
+	    }
+	    if hungry < 20 {
+	       notification := im.NotificationIMJob(
+	             "Feed",
+		     "Master, I am starving",
+		     "https://www.zhihu.com")
+	       im.ScheduleJob(notification)
 
-	      time.Sleep(time.Duration(hungryRate) * time.Second)
+	       }
+	    time.Sleep(time.Duration(hungryRate) * time.Second)
 	}
      }()
 
@@ -36,6 +38,13 @@ func init() {
      	for {
 	    if thirsty > 0 {
 	       thirsty--
+	    }
+	    if thirsty < 20 {
+	       notification := im.NotificationIMJob(
+		    "Thirsty",
+		    "Master, I am Thirsty",
+		    "https://www.zhihu.com")
+	       im.ScheduleJob(notification)
 	    }
 	    time.Sleep(time.Duration(thirstyRate) * time.Second)
 	}
@@ -48,6 +57,13 @@ func init() {
      	for {
 	    if mood > 0 {
 	       mood--
+	    }
+	    if mood < 20 {
+	       notification := im.NotificationIMJob(
+	            "Feel bad",
+		    "Master, I feel not good",
+		    "https://www.zhihu.com")
+	       im.ScheduleJob(notification)
 	    }
 	    time.Sleep(time.Duration(moodRate) * time.Second)
 	}
